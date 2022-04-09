@@ -4,7 +4,7 @@ import time
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
 
 
 def feedback2dict(item):
@@ -39,10 +39,9 @@ def scrape_page(page, timeout=10):
 
 
 def create_driver():
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    driver = webdriver.Chrome('/usr/bin/chromedriver',
-                              chrome_options=chrome_options)
+    options = Options()
+    options.headless = True
+    driver = webdriver.Firefox('/usr/local/bin/geckodriver', options=options)
     return driver
 
 
