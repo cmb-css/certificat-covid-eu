@@ -1,4 +1,5 @@
 import json
+import sys
 import time
 
 from bs4 import BeautifulSoup
@@ -48,8 +49,11 @@ def create_driver():
 
 
 if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        page = int(sys.argv[1])
+    else:
+        page = 0
     driver = create_driver()
-    page = 0
     while True:
         try:
             feedbacks = scrape_page(page)
