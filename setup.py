@@ -4,7 +4,7 @@ from setuptools import setup
 
 
 setup(
-    name='twitter-hoover',
+    name='certificat-covid-eu',
     version='0.0.1',
     author='Telmo Menezes',
     author_email='telmo@telmomenezes.net',
