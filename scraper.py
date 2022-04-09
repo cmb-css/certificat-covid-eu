@@ -39,11 +39,16 @@ def scrape_page(page, timeout=10):
 
 
 def create_driver():
-    options = Options()
-    options.headless = True
-    driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver',
-                               options=options)
-    return driver
+    while True:
+        try:
+            options = Options()
+            options.headless = True
+            driver = webdriver.Firefox(
+                executable_path='/usr/local/bin/geckodriver', options=options)
+            return driver
+        except:
+            print('[page {}] Something is wrong creating driver sleeping for 60 seconds...')
+            time.sleep(60)
 
 
 if __name__ == '__main__':
