@@ -37,8 +37,18 @@ def scrape_page(page, timeout=10):
     return [feedback2dict(item) for item in items]
 
 
+def create_driver():
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options.add_argument('--no-sandbox')
+    driver = webdriver.Chrome('/usr/bin/chromedriver',
+                              chrome_options=chrome_options)
+    return driver
+
+
 if __name__ == '__main__':
-    driver = webdriver.Chrome()
+    driver = create_driver()
     page = 0
     while True:
         try:
@@ -54,5 +64,5 @@ if __name__ == '__main__':
             page += 1
         else:
             print('[page {}] Something is wrong. Restarting driver and sleeping for 60 seconds...'.format(page))
-            driver = webdriver.Chrome()
+            driver = create_driver()
             time.sleep(60)
