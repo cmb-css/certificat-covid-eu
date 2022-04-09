@@ -41,7 +41,8 @@ def scrape_page(page, timeout=10):
 def create_driver():
     options = Options()
     options.headless = True
-    driver = webdriver.Firefox('/usr/local/bin/geckodriver', options=options)
+    driver = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver',
+                               options=options)
     return driver
 
 
