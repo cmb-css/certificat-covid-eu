@@ -46,7 +46,8 @@ def create_driver():
             driver = webdriver.Firefox(
                 executable_path='/usr/local/bin/geckodriver', options=options)
             return driver
-        except:
+        except Exception as e:
+            print(e)
             print('Something went wrong creating driver, exiting.')
             sys.exit(-1)
 
