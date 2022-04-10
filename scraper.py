@@ -47,16 +47,26 @@ def create_driver():
                 executable_path='/usr/local/bin/geckodriver', options=options)
             return driver
         except:
-            print('[page {}] Something is wrong creating driver sleeping for 60 seconds...')
-            time.sleep(60)
+            print('Something went wrong creating driver, exiting.')
+            sys.exit(-1)
+
+
+def get_current_page():
+    try:
+        with open('curpage.txt', 'rt') as f:
+            return int(f.read())
+    except:
+        return 0
+
+
+def set_current_page(page):
+    with open('curpage.txt', 'wt') as f:
+        f.write('{}'.format(page))
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        page = int(sys.argv[1])
-    else:
-        page = 0
     driver = create_driver()
+    page = get_current_page()
     while True:
         try:
             feedbacks = scrape_page(page)
@@ -69,7 +79,7 @@ if __name__ == '__main__':
                     f.write('{}\n'.format(json.dumps(feedback)))
             print('page {} scrapped'.format(page))
             page += 1
+            set_current_page(page)
         else:
-            print('[page {}] Something is wrong. Restarting driver and sleeping for 60 seconds...'.format(page))
-            driver = create_driver()
-            time.sleep(60)
+            print('Something went wrong. Exiting.')
+            sys.exit(-1)
