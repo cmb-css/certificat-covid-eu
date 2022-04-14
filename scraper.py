@@ -1,5 +1,4 @@
 import json
-import sys
 import time
 
 from bs4 import BeautifulSoup
@@ -49,7 +48,7 @@ def create_driver():
         except Exception as e:
             print(e)
             print('Something went wrong creating driver, sleeping for 60s.')
-            sys.sleep(60)
+            time.sleep(60)
 
 
 def get_current_page():
@@ -83,4 +82,4 @@ if __name__ == '__main__':
             set_current_page(page)
         else:
             print('Something went wrong. Sleeping for 60s.')
-            sys.sleep(60)
+            time.sleep(60)
