@@ -48,8 +48,8 @@ def create_driver():
             return driver
         except Exception as e:
             print(e)
-            print('Something went wrong creating driver, exiting.')
-            sys.exit(-1)
+            print('Something went wrong creating driver, sleeping for 60s.')
+            sys.sleep(60)
 
 
 def get_current_page():
@@ -82,5 +82,5 @@ if __name__ == '__main__':
             page += 1
             set_current_page(page)
         else:
-            print('Something went wrong. Exiting.')
-            sys.exit(-1)
+            print('Something went wrong. Sleeping for 60s.')
+            sys.sleep(60)
