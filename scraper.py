@@ -16,6 +16,9 @@ def feedback2dict(item):
     else:
         text = spans[2].text
     user = links[0].text
+    if '(' in user:
+        pos = user.find('(')
+        user = u'hidden {}'.format(user[pos:])
     return {
         'user': user,
         'user_type': user_type,
